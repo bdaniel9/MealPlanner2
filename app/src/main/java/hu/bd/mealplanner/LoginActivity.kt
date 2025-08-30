@@ -21,10 +21,34 @@ class LoginActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
 
+        // ⬇️ Itt ellenőrzöd, hogy van-e bejelentkezett user
+        val currentUser = firebaseAuth.currentUser
+        if (currentUser != null) {
+            // Ha igen, akkor rögtön átirányítod a főoldalra
+            firestore.collection("users").document(currentUser.uid).get()
+                .addOnSuccessListener { document ->
+                    val nickname = document.getString("nickname")
+                    val intent = Intent(this, MainActivity::class.java)
+                    if (nickname != null) {
+                        intent.putExtra("nickname", nickname)
+                    }
+                    startActivity(intent)
+                    finish()
+                }
+                .addOnFailureListener {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+            return
+        }
+
+        // Ha nincs bejelentkezve, akkor jön a normál login flow
         binding.buttonSignUp.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
+
         binding.buttonLogin.setOnClickListener {
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
@@ -36,7 +60,7 @@ class LoginActivity : AppCompatActivity() {
                         if (user != null) {
                             firestore.collection("users").document(user.uid).get()
                                 .addOnSuccessListener { document ->
-                                    val nickname = document.getString("nickname") // A becenév lekérése
+                                    val nickname = document.getString("nickname")
                                     val intent = Intent(this, MainActivity::class.java)
                                     if (nickname != null) {
                                         intent.putExtra("nickname", nickname)
