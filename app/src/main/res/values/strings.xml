@@ -13,4 +13,7 @@
     <string name="back_to_login">Back to login!</string>
     <string name="retype_password">Retype password</string>
     <string name="do_you_have_an_account_n_log_in">Do you have an account? \n Log in!</string>
+    <string name="settings">Settings</string>
+    <string name="dark_mode">Dark mode</string>
+    <string name="sign_out">Sign out</string>
 </resources>
