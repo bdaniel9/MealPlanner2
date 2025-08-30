@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Meal Planner</string>
+    <string name="search">Search</string>
+    <string name="search_for_recipes">Search for recipes…</string>
+    <string name="welcome">Welcome!</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_up">Sign up</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="registration">Registration</string>
+    <string name="nickname">Nickname</string>
+    <string name="back_to_login">Back to login!</string>
+    <string name="retype_password">Retype password</string>
+    <string name="do_you_have_an_account_n_log_in">Do you have an account? \n Log in!</string>
+</resources>
